@@ -1,23 +1,36 @@
-use std::env;
+mod config;
 
-use futures_util::{future, pin_mut, StreamExt, SinkExt};
+use futures_util::{future, pin_mut, SinkExt, StreamExt};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio_tungstenite::{connect_async, tungstenite::protocol::Message};
 
-use serde::{Serialize, Deserialize};
+use rppal::gpio::Gpio;
+use rppal::system::DeviceInfo;
+use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct AppMessage {
     id: String,
     event: String,
+    payload: String,
 }
-
-
+const GPIO_LED: u8 = 23;
 #[tokio::main]
 async fn main() {
-    let connect_addr =
-        env::args().nth(1).unwrap_or_else(|| panic!("this program requires at least one argument"));
+    println!(
+        "Blinking an LED on a {}.",
+        DeviceInfo::new().unwrap().model()
+    );
+    let config_yaml =
+        std::fs::File::open("./config.yaml").expect("this program require config file");
+    println!("Reading config");
+    let config_value: config::Config = serde_yaml::from_reader(config_yaml).unwrap();
+    println!("{:?}, {:?}", config_value.endpoint, config_value.device_id);
+    if config_value.device_id == "" || config_value.endpoint == "" {
+        panic!("Plase config file")
+    }
+    let connect_addr = config_value.endpoint;
 
     let url = url::Url::parse(&connect_addr).unwrap();
 
@@ -26,18 +39,25 @@ async fn main() {
 
     let (mut ws_stream, _) = connect_async(url).await.expect("Failed to connect");
     println!("WebSocket handshake has been successfully completed");
-    ws_stream.send(Message::Text(String::from("connected"))).await.unwrap();
+    let connected_message = AppMessage {
+        id: config_value.device_id,
+        event: String::from("connected"),
+        payload: "".to_string(),
+    };
+    let cns = serde_json::to_string(&connected_message).unwrap();
+    println!("{}", cns);
+    ws_stream.send(Message::Text(cns)).await.unwrap();
     let (write, read) = ws_stream.split();
     let stdin_to_ws = stdin_rx.map(Ok).forward(write);
     let ws_to_stdout = {
-        read.for_each(|message| async {
+        read.for_each(|message| async move {
             let data = message.unwrap().into_data();
-            let msg:AppMessage = serde_json::from_str(Cow::as_ref(&String::from_utf8_lossy(&data))).unwrap();
+            let msg: AppMessage =
+                serde_json::from_str(Cow::as_ref(&String::from_utf8_lossy(&data))).unwrap();
             println!("{:?}", msg);
-            if msg.event == "connected" {
-                env::set_var("TEST_APP_ID",msg.id);
-                println!("{:?}",env::var("TEST_APP_ID").unwrap());
-            }
+            let gpio = Gpio::new().unwrap();
+            let mut pin = gpio.get(GPIO_LED).unwrap().into_output();
+            pin.set_low();
             tokio::io::stdout().write_all(&data).await.unwrap();
         })
     };
