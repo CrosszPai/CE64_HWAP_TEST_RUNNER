@@ -1,27 +1,24 @@
 mod config;
+mod controller;
+mod test_utils;
+mod utils;
 
 use futures_util::{future, pin_mut, SinkExt, StreamExt};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio_tungstenite::{connect_async, tungstenite::protocol::Message};
 
-use rppal::gpio::Gpio;
 use rppal::system::DeviceInfo;
-use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
 
-#[derive(Serialize, Deserialize, Debug)]
-struct AppMessage {
-    id: String,
-    event: String,
-    payload: String,
-}
-const GPIO_LED: u8 = 23;
 #[tokio::main]
 async fn main() {
     println!(
-        "Blinking an LED on a {}.",
+        "Start {}.",
         DeviceInfo::new().unwrap().model()
     );
+
+    test_utils::process_test().await;
+
     let config_yaml =
         std::fs::File::open("./config.yaml").expect("this program require config file");
     println!("Reading config");
@@ -39,25 +36,22 @@ async fn main() {
 
     let (mut ws_stream, _) = connect_async(url).await.expect("Failed to connect");
     println!("WebSocket handshake has been successfully completed");
-    let connected_message = AppMessage {
+    let connected_message = controller::AppMessage {
         id: config_value.device_id,
         event: String::from("connected"),
         payload: "".to_string(),
     };
     let cns = serde_json::to_string(&connected_message).unwrap();
-    println!("{}", cns);
     ws_stream.send(Message::Text(cns)).await.unwrap();
     let (write, read) = ws_stream.split();
     let stdin_to_ws = stdin_rx.map(Ok).forward(write);
     let ws_to_stdout = {
-        read.for_each(|message| async move {
+        read.for_each(|message| async {
             let data = message.unwrap().into_data();
-            let msg: AppMessage =
+            let msg: controller::AppMessage =
                 serde_json::from_str(Cow::as_ref(&String::from_utf8_lossy(&data))).unwrap();
             println!("{:?}", msg);
-            let gpio = Gpio::new().unwrap();
-            let mut pin = gpio.get(GPIO_LED).unwrap().into_output();
-            pin.set_low();
+            controller::command_processing(msg);
             tokio::io::stdout().write_all(&data).await.unwrap();
         })
     };
