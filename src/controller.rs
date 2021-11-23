@@ -10,13 +10,8 @@ pub struct AppMessage {
     pub payload: String,
 }
 
-pub fn command_processing(
-    message: AppMessage,
-    pin: std::sync::Arc<std::sync::Mutex<rppal::gpio::OutputPin>>,
-) {
-    if message.event == "connected" && message.payload == "success" {
-        pin.lock().unwrap().set_high();
-    }
+pub fn command_processing(message: AppMessage) {
+
     if message.event == "income_work" {
         println!("{}", message.payload);
         let clonning_process = Command::new("git")
