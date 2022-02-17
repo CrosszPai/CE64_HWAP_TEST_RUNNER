@@ -1,0 +1,92 @@
+[
+    {
+        "pin": 26,
+        "event": "rising",
+        "timestamp": 576091498,
+        "relative_timestamp": 0.0
+    },
+    {
+        "pin": 26,
+        "event": "falling",
+        "timestamp": 577092928,
+        "relative_timestamp": 1.00143
+    },
+    {
+        "pin": 26,
+        "event": "rising",
+        "timestamp": 580096544,
+        "relative_timestamp": 4.005046
+    },
+    {
+        "pin": 19,
+        "event": "falling",
+        "timestamp": 580096653,
+        "relative_timestamp": 4.005155
+    },
+    {
+        "pin": 13,
+        "event": "rising",
+        "timestamp": 580096663,
+        "relative_timestamp": 4.005165
+    },
+    {
+        "pin": 26,
+        "event": "falling",
+        "timestamp": 581098314,
+        "relative_timestamp": 5.006816
+    },
+    {
+        "pin": 26,
+        "event": "rising",
+        "timestamp": 582100349,
+        "relative_timestamp": 6.008851
+    },
+    {
+        "pin": 13,
+        "event": "falling",
+        "timestamp": 582100448,
+        "relative_timestamp": 6.00895
+    },
+    {
+        "pin": 6,
+        "event": "rising",
+        "timestamp": 582100458,
+        "relative_timestamp": 6.00896
+    },
+    {
+        "pin": 26,
+        "event": "falling",
+        "timestamp": 583102134,
+        "relative_timestamp": 7.010636
+    },
+    {
+        "pin": 26,
+        "event": "rising",
+        "timestamp": 585103653,
+        "relative_timestamp": 9.012155
+    },
+    {
+        "pin": 6,
+        "event": "falling",
+        "timestamp": 585103768,
+        "relative_timestamp": 9.01227
+    },
+    {
+        "pin": 26,
+        "event": "falling",
+        "timestamp": 586104643,
+        "relative_timestamp": 10.013145
+    },
+    {
+        "pin": 26,
+        "event": "rising",
+        "timestamp": 588107063,
+        "relative_timestamp": 12.015565
+    },
+    {
+        "pin": 19,
+        "event": "rising",
+        "timestamp": 588107153,
+        "relative_timestamp": 12.015655
+    }
+]
