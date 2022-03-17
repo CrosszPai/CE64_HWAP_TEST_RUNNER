@@ -8,3 +8,7 @@ def read_project_config():
             with open("./temp/" + file, 'r') as project_config:
                 return project_config.readlines()
     return None
+
+
+micro_mult = 0.000001
+milli_mul = 0.001
