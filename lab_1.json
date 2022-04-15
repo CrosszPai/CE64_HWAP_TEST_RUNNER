@@ -1,19 +1,19 @@
 [
     {
         "pin": 26,
-        "event": "rising",
+        "capture": "rising",
         "at": 0,
         "type": "input"
     },
     {
         "pin": 26,
-        "event": "falling",
+        "capture": "falling",
         "at": 1,
         "type": "input"
     },
     {
         "pin": 19,
-        "event": "rising",
+        "capture": "rising",
         "at": 1,
         "unit": "s",
         "type": "output",
@@ -21,20 +21,20 @@
     },
     {
         "pin": 26,
-        "event": "rising",
+        "capture": "rising",
         "at": 4,
         "unit": "s",
         "type": "input"
     },
     {
         "pin": 26,
-        "event": "falling",
+        "capture": "falling",
         "at": 5,
         "type": "input"
     },
     {
         "pin": 19,
-        "event": "falling",
+        "capture": "falling",
         "at": 4,
         "unit": "s",
         "type": "output",
@@ -42,7 +42,7 @@
     },
     {
         "pin": 13,
-        "event": "rising",
+        "capture": "rising",
         "at": 4.2,
         "unit": "s",
         "type": "output",
@@ -50,20 +50,20 @@
     },
     {
         "pin": 26,
-        "event": "rising",
+        "capture": "rising",
         "at": 6,
         "unit": "s",
         "type": "input"
     },
     {
         "pin": 26,
-        "event": "falling",
+        "capture": "falling",
         "at": 7,
         "type": "input"
     },
     {
         "pin": 13,
-        "event": "falling",
+        "capture": "falling",
         "at": 6.5,
         "unit": "s",
         "type": "output",
@@ -71,7 +71,7 @@
     },
     {
         "pin": 6,
-        "event": "rising",
+        "capture": "rising",
         "at": 6.5,
         "unit": "s",
         "type": "output",
@@ -79,20 +79,20 @@
     },
     {
         "pin": 26,
-        "event": "rising",
+        "capture": "rising",
         "at": 9,
         "unit": "s",
         "type": "input"
     },
     {
         "pin": 26,
-        "event": "falling",
+        "capture": "falling",
         "at": 10,
         "type": "input"
     },
     {
         "pin": 6,
-        "event": "falling",
+        "capture": "falling",
         "at": 9.5,
         "unit": "s",
         "type": "output",
@@ -100,20 +100,20 @@
     },
     {
         "pin": 26,
-        "event": "rising",
+        "capture": "rising",
         "at": 12,
         "unit": "s",
         "type": "input"
     },
     {
         "pin": 26,
-        "event": "falling",
+        "capture": "falling",
         "at": 13,
         "type": "input"
     },
     {
         "pin": 19,
-        "event": "rising",
+        "capture": "rising",
         "at": 12.9,
         "unit": "s",
         "type": "output",

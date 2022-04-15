@@ -3,7 +3,30 @@ import threading
 import pigpio
 import time
 
+from utils import system_utilization_usage
+
+a = system_utilization_usage()
+
 pi = pigpio.pi()
+
+register_pins = dict({
+    1:{
+        "label": "lab_1",
+        "pins":[]
+    },
+    2:{
+        "label": "lab_2",
+        "pins":[]
+    },
+    3:{
+        "label": "lab_3",
+        "pins":[]
+    },
+    4:{
+        "label": "lab_1",
+        "pins":[]
+    },
+})
 
 script = []
 with open("./lab_1.json", "r") as readfile:
@@ -38,7 +61,7 @@ def callback(gpio, level, tick):
     result.append(
         {
             "pin": gpio,
-            "event": "falling" if level == 0 else "rising",
+            "capture": "falling" if level == 0 else "rising",
             "timestamp": tick,
             "relative_timestamp": (tick - first_start)/1000000
         }
@@ -57,7 +80,7 @@ for output_pin in target_output_pin:
 for input_pin in range(len(target_input)):
     target = target_input[input_pin]
     print(target,end="\n")
-    pi.write(target['pin'], 1 if target['event'] == 'rising' else 0)
+    pi.write(target['pin'], 1 if target['capture'] == 'rising' else 0)
     # check if has next target
     if input_pin + 1 < len(target_input):
         next_target = target_input[input_pin + 1]
@@ -66,3 +89,5 @@ for input_pin in range(len(target_input)):
 
 with open("sample.json", "w") as outfile:
     outfile.write(json.dumps(result, indent=4))
+
+a.kill()

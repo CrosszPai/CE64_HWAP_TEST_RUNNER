@@ -24,13 +24,15 @@ async def connection_process():
         loop.add_signal_handler(
             signal.SIGTERM, loop.create_task, websocket.close())
         if websocket.open:
+            print(config)
             await websocket.send(json.dumps(AppMessage(
                 id=config['device_id'],
-                event='connect',
+                event='connected',
                 payload='',
             )))
         async for message in websocket:
             data: AppMessage = json.loads(message)
+            print(data)
 
 
 if __name__ == "__main__":

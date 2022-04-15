@@ -1,3 +1,4 @@
+import subprocess
 import os
 
 
@@ -12,3 +13,10 @@ def read_project_config():
 
 micro_mult = 0.000001
 milli_mul = 0.001
+
+
+def system_utilization_usage(log_file_name: str = "ps.log") -> subprocess.Popen:
+    return subprocess.Popen(
+        ["while true; do (echo \" % CPU % MEM ARGS $(date)\" && ps  -e -o pcpu,pmem,args --sort=pcpu | grep 'python3\|pigpiod$' | cut -d\" \" -f1-5 | tail) >> {}; sleep 1; done".format(log_file_name)],
+        shell=True,
+    )
