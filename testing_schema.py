@@ -3,8 +3,8 @@ from typing_extensions import TypedDict
 
 class Schema(TypedDict):
     label: str # Label of the measurement <optional>
-    pin: int # target pin <required>
-    type: str # input or output
+    pin: int # target pin <required> ignore if event is end
+    type: str # input or output or end <required>
     signal: str # digtal(default) analog pwm
     at: int # time
     unit: str # time unit default: microseconds

@@ -1,2 +1,2 @@
-endpoint: ws://172.20.10.2:3001
-device_id: ALpyjr0v0a
+endpoint: ws://172.20.10.2:3001/connected_device
+device_id: rjzB-uLztu

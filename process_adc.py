@@ -26,10 +26,10 @@ def func_simple(x, a, b):
 
 popt, pcov = curve_fit(func_simple, x, y, bounds=(0, np.inf))
 plt.plot(x, func_simple(x, *popt), 'r-',
-         label='fit: a=%5.3f, b=%5.3f' % tuple(popt))
-plt.plot(x, y, 'b-', label='data')
-plt.xlabel('x')
-plt.ylabel('y')
+         label='fitting')
+plt.plot(x, x, 'b-', label='measure')
+plt.xlabel('simulation adc value')
+plt.ylabel('measured adc value')
 plt.legend()
 plt.show()
 plt.savefig('plot.png')

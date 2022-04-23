@@ -118,5 +118,9 @@
         "unit": "s",
         "type": "output",
         "accept_error": 0.3
+    },
+    {
+        "type": "end",
+        "at": 13.1
     }
 ]
