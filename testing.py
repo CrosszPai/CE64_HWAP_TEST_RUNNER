@@ -69,6 +69,7 @@ def test(imported_script):
     dac.set_voltage_raw(0)
     # keep any program cold
     time.sleep(2)
+
     def callback(gpio, level, tick):
         nonlocal first_start, result
         if first_start == 0:
@@ -123,16 +124,25 @@ def test(imported_script):
         cb.cancel()
     pi.stop()
     dac.set_voltage_raw(0)
-
+    print(json.dumps(result, indent=4))
     open('result.json', "w").close()
     with open('result.json', "w") as outfile:
-        outfile.write(json.dumps(result, indent=4))
+        # clone last result
+        dumb = result.copy()
+        last_dumb = {
+            "pin": dumb[-1].get('pin', None),
+            "capture": dumb[-1].get('capture', None),
+            "relative_timestamp": target_end[0]["at"],
+            "value": dumb[-1].get('value', None)
+        }
+        dumb.append(last_dumb)
+        outfile.write(json.dumps(dumb, indent=4))
 
     event_test = target_input+target_output
     if(len(result) != len(event_test)):
-        print("fail","len")
+        print("fail", "len")
         return "fail"
-        
+
     count = 0
     # print(len(result))
     for sc in range(len(event_test)):
@@ -151,7 +161,3 @@ def test(imported_script):
     else:
         # print("pass")
         return "pass"
-
-
-print(
-    test(json.loads(open('adc_script.json', "r").read())))
