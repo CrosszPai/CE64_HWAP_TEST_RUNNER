@@ -6,7 +6,7 @@ from testing_schema import Schema, Result
 
 
 def ftr(a: Result, b: Schema, def_err):
-    if(a.get('signal') == 'analog' and b.get('value') == a.get('value')):
+    if(a.get('signal', None) == 'analog' and b.get('value', None) == a.get('value', None)):
         if(b.get('accept_error') is not None):
             diff = abs(a['relative_timestamp'] - b['at'])
             if(diff > b["accept_error"]):
@@ -32,6 +32,11 @@ def test(imported_script):
     pi = pigpio.pi()
 
     script = imported_script
+    first_start = 0
+    dac = DAC()
+    dac.set_voltage_raw(0)
+    # keep any program cold
+    time.sleep(2)
 
     # print(script)
     # parsing any input
@@ -51,7 +56,7 @@ def test(imported_script):
 
     target_input_pin = []
     [target_input_pin.append(event["pin"])
-     for event in target_input if event["pin"] not in target_input_pin and event["signal"] != "analog"]
+     for event in target_input if event["pin"] not in target_input_pin and event.get('signal',None) != "analog"]
     target_output_pin = []
     [target_output_pin.append(event["pin"])
      for event in target_output if event["pin"] not in target_output_pin]
@@ -63,12 +68,6 @@ def test(imported_script):
     result = []
 
     # add callback data to result
-
-    first_start = 0
-    dac = DAC()
-    dac.set_voltage_raw(0)
-    # keep any program cold
-    time.sleep(2)
 
     def callback(gpio, level, tick):
         nonlocal first_start, result
@@ -98,7 +97,7 @@ def test(imported_script):
     for input_pin in range(len(target_input)):
         target = target_input[input_pin]
         # print(target, end="\n")
-        if target['signal'] == "analog":
+        if target.get('signal',None) == "analog":
             dac.set_voltage_raw(target['value'])
             result.append({
                 "pin": "analog_pin",
