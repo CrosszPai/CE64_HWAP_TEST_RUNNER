@@ -5,7 +5,7 @@ import serial
 
 s = DAC()
 s.set_voltage_raw(0)
-sleep(10);
+sleep(10)
 start = 1
 count = 0
 max_val = 4096

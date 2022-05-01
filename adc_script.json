@@ -1,0 +1,73 @@
+[
+    {
+        "dumb": "27,26,22",
+        "type": "any data",
+        "at": -1
+    },
+    {
+        "type": "accept_error",
+        "value": 0.5,
+        "at": -1
+    },
+    {
+        "pin":-1,
+        "at": 0,
+        "type": "input",
+        "signal": "analog",
+        "value": 1200
+    },
+    {
+        "pin": 19,
+        "at": 0,
+        "type": "output",
+        "capture": "rising"
+    },
+    {
+        "pin":-1,
+        "at": 3,
+        "type": "input",
+        "signal": "analog",
+        "value": 3200
+    },
+    {
+        "pin": 18,
+        "at": 3,
+        "type": "output",
+        "capture": "rising"
+    },
+    {
+        "pin": 15,
+        "at": 3,
+        "type": "output",
+        "capture": "rising"
+    },
+    {
+        "pin":-1,
+        "at": 4,
+        "type": "input",
+        "signal": "analog",
+        "value": 200
+    },
+    {
+        "pin": 15,
+        "at": 4.2,
+        "type": "output",
+        "capture": "falling"
+    },
+    {
+        "pin": 19,
+        "at": 4.2,
+        "type": "output",
+        "capture": "falling"
+    },
+    {
+        "pin": 18,
+        "at": 4.2,
+        "type": "output",
+        "capture": "falling"
+    },
+    {
+        "type": "end",
+        "at": 5
+    }
+]

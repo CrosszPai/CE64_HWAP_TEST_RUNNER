@@ -11,6 +11,8 @@ class DAC:
     def set_voltage(self, voltage: float) -> None:
         """
         Set the voltage of the DAC.
+        min: 0
+        max: 3.3
         """
         assert voltage >= 0.0
         assert voltage <= 3.3
@@ -18,6 +20,8 @@ class DAC:
     def set_voltage_raw(self, value: int) -> None:
         """
         Set the voltage of the DAC.
+        min: 0
+        max: 4095
         """
         assert value >= 0
         assert value <= 4095
