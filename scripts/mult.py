@@ -1,7 +1,18 @@
+
 import json
+import subprocess
+import threading
 import pigpio
 import time
-from testing_schema import Schema,Result
+from schema import Result, Schema
+
+
+def system_utilization_usage(log_file_name: str = "ps.log") -> subprocess.Popen:
+    return subprocess.Popen(
+        ["while true; do (echo \" % CPU % MEM ARGS $(date)\" && ps  -e -o pcpu,pmem,args --sort=pcpu | grep 'python3\|pigpiod$' | cut -d\" \" -f1-5 | tail) >> {}; sleep 1; done".format(log_file_name)],
+        shell=True,
+    )
+
 
 def ftr(a: Result, b: Schema, def_err):
     if(a.get('pin') != b.get('pin')):
@@ -16,10 +27,13 @@ def ftr(a: Result, b: Schema, def_err):
     diff = abs(a['relative_timestamp'] - b['at'])
     return diff <= def_err
 
-def test(imported_script):
+
+def test(f):
     pi = pigpio.pi()
 
-    script = imported_script
+    script = list[Schema]
+    with open("./{}.json".format(f), "r") as readfile:
+        script = list[Schema](json.load(readfile))
 
     # print(script)
 
@@ -94,8 +108,8 @@ def test(imported_script):
         cb.cancel()
     pi.stop()
     # print("end", target_end[0]["at"] - sorted_at[-2]['at'])
-    open('result.json', "w").close()
-    with open('result.json', "w") as outfile:
+    open("{}_res.json".format(f), "w").close()
+    with open("{}_res.json".format(f), "w") as outfile:
         outfile.write(json.dumps(result, indent=4))
 
     event_test = target_input+target_output
@@ -121,3 +135,59 @@ def test(imported_script):
     else:
         # print("pass")
         return "pass"
+
+
+class sample(threading.Thread):
+    def __init__(self, num):
+        super(sample, self).__init__()
+        self.num = num
+        self.start()
+
+    def run(self):
+        test(self.num)
+
+
+rst = pigpio.pi()
+error = []
+for i in range(1, 8, 1):
+    a = system_utilization_usage("ps_{}.log".format(i))
+    for j in range(0, 20, 1):
+        print("====", "round:", j, ":", i, "====")
+        workers = []
+        for k in range(i):
+            workers.append(sample(i))
+        try:
+            for w in workers:
+                res = w.join()
+                if(res == "fail"):
+                    error.append({
+                        "fail": "fail",
+                        "i": i,
+                        "j": j,
+                        "k": k
+                    })
+        except:
+            print("err", i)
+        rst.write(6, 1)
+        time.sleep(0.2)
+        rst.write(6, 0)
+        print("reset")
+    a.kill()
+    cpus = []
+    mems = []
+    with open("ps_{}.log".format(i)) as f:
+        while f:
+            line = f.readline()
+            if('pigpiod' in line or 'python' in line):
+                target = line.strip().split()
+                cpu = float(target[0])
+                cpus.append(cpu)
+                mem = float(target[1])
+                mems.append(mem)
+            if(line == ""):
+                break
+    print(sum(cpus)/len(cpus), sum(mems)/len(mems))
+    print("====", i, "====")
+
+with open("./err.json", "w") as errfile:
+    errfile.write(json.dumps(error, indent=4))

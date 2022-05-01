@@ -1,3 +1,0 @@
-import pigpio
-
-pigpio.pi()

@@ -1,0 +1,122 @@
+[
+    {
+        "pin": 14,
+        "capture": "rising",
+        "timestamp": 320432095,
+        "relative_timestamp": 0.0
+    },
+    {
+        "pin": 15,
+        "capture": "rising",
+        "timestamp": 320432095,
+        "relative_timestamp": 0.0
+    },
+    {
+        "pin": 14,
+        "capture": "falling",
+        "timestamp": 321433650,
+        "relative_timestamp": 1.001555
+    },
+    {
+        "pin": 14,
+        "capture": "rising",
+        "timestamp": 324436839,
+        "relative_timestamp": 4.004744
+    },
+    {
+        "pin": 15,
+        "capture": "falling",
+        "timestamp": 324436839,
+        "relative_timestamp": 4.004744
+    },
+    {
+        "pin": 18,
+        "capture": "rising",
+        "timestamp": 324436844,
+        "relative_timestamp": 4.004749
+    },
+    {
+        "pin": 14,
+        "capture": "falling",
+        "timestamp": 325437234,
+        "relative_timestamp": 5.005139
+    },
+    {
+        "pin": 14,
+        "capture": "rising",
+        "timestamp": 326438509,
+        "relative_timestamp": 6.006414
+    },
+    {
+        "pin": 18,
+        "capture": "falling",
+        "timestamp": 326438509,
+        "relative_timestamp": 6.006414
+    },
+    {
+        "pin": 14,
+        "capture": "falling",
+        "timestamp": 327439740,
+        "relative_timestamp": 7.007645
+    },
+    {
+        "pin": 14,
+        "capture": "rising",
+        "timestamp": 328440944,
+        "relative_timestamp": 8.008849
+    },
+    {
+        "pin": 15,
+        "capture": "rising",
+        "timestamp": 328440949,
+        "relative_timestamp": 8.008854
+    },
+    {
+        "pin": 14,
+        "capture": "falling",
+        "timestamp": 328941694,
+        "relative_timestamp": 8.509599
+    },
+    {
+        "pin": 14,
+        "capture": "rising",
+        "timestamp": 329442424,
+        "relative_timestamp": 9.010329
+    },
+    {
+        "pin": 15,
+        "capture": "falling",
+        "timestamp": 329442424,
+        "relative_timestamp": 9.010329
+    },
+    {
+        "pin": 18,
+        "capture": "rising",
+        "timestamp": 329442424,
+        "relative_timestamp": 9.010329
+    },
+    {
+        "pin": 14,
+        "capture": "falling",
+        "timestamp": 329943164,
+        "relative_timestamp": 9.511069
+    },
+    {
+        "pin": 14,
+        "capture": "rising",
+        "timestamp": 330443939,
+        "relative_timestamp": 10.011844
+    },
+    {
+        "pin": 18,
+        "capture": "falling",
+        "timestamp": 330443944,
+        "relative_timestamp": 10.011849
+    },
+    {
+        "pin": 14,
+        "capture": "falling",
+        "timestamp": 330844589,
+        "relative_timestamp": 10.412494
+    }
+]

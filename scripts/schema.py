@@ -1,10 +1,6 @@
+from typing import Any
 from typing_extensions import TypedDict
 
-class Result(TypedDict):
-    pin: int
-    capture: str
-    timestamp: int
-    relative_timestamp: int
 
 class Schema(TypedDict):
     label: str # Label of the measurement <optional>
@@ -23,5 +19,9 @@ class Schema(TypedDict):
     duty_cycle: int # duty cycle of pwm
     frequency: int # frequency of pwm
 
-    
 
+class Result(TypedDict):
+    pin: int
+    capture: str
+    timestamp: int
+    relative_timestamp: int

@@ -1,15 +1,20 @@
 import asyncio
+from email import message
 import signal
+
+from controller import command_processing
 import websockets
 import yaml
 import json
 from app_message import AppMessage
 from config import Config
 
+config: Config = None
+
 
 async def connection_process():
     # read yaml file
-    config: Config = None
+    global config
     with open("config.yaml", 'r') as config_file:
         config = yaml.load(config_file, Loader=yaml.FullLoader)
         config_file.close()
@@ -30,10 +35,16 @@ async def connection_process():
                 event='connected',
                 payload='',
             )))
-        async for message in websocket:
+        while websocket.open:
+            message = await websocket.recv()
             data: AppMessage = json.loads(message)
             print(data)
+            if(data.get('id') == config.get('device_id')):
+                r = command_processing(data)
+                if r is not None:
+                    await websocket.send(json.dumps(r))
+                    print("sended")
 
 
 if __name__ == "__main__":
-    asyncio.run(connection_process())
+    asyncio.get_event_loop().run_until_complete(connection_process())
