@@ -1,0 +1,51 @@
+[
+    {
+        "pin": 9,
+        "capture": "rising",
+        "timestamp": 1307242204,
+        "relative_timestamp": 0.0
+    },
+    {
+        "pin": 10,
+        "capture": "rising",
+        "timestamp": 1310245590,
+        "relative_timestamp": 3.003386
+    },
+    {
+        "pin": 9,
+        "capture": "falling",
+        "timestamp": 1310245590,
+        "relative_timestamp": 3.003386
+    },
+    {
+        "pin": 11,
+        "capture": "rising",
+        "timestamp": 1310245590,
+        "relative_timestamp": 3.003386
+    },
+    {
+        "pin": 10,
+        "capture": "falling",
+        "timestamp": 1311246960,
+        "relative_timestamp": 4.004756
+    },
+    {
+        "pin": 10,
+        "capture": "rising",
+        "timestamp": 1313249309,
+        "relative_timestamp": 6.007105
+    },
+    {
+        "pin": 11,
+        "capture": "falling",
+        "timestamp": 1313249314,
+        "relative_timestamp": 6.00711
+    },
+    {
+        "pin": 10,
+        "capture": "falling",
+        "timestamp": 1313449794,
+        "relative_timestamp": 6.20759
+    }
+]
+]

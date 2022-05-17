@@ -1,0 +1,110 @@
+[
+    {
+        "pin": 20,
+        "capture": "rising",
+        "timestamp": 750396241,
+        "relative_timestamp": 0.0
+    },
+    {
+        "pin": 16,
+        "capture": "rising",
+        "timestamp": 753397836,
+        "relative_timestamp": 3.001595
+    },
+    {
+        "pin": 20,
+        "capture": "falling",
+        "timestamp": 753397841,
+        "relative_timestamp": 3.0016
+    },
+    {
+        "pin": 21,
+        "capture": "rising",
+        "timestamp": 753397841,
+        "relative_timestamp": 3.0016
+    },
+    {
+        "pin": 16,
+        "capture": "falling",
+        "timestamp": 754399131,
+        "relative_timestamp": 4.00289
+    },
+    {
+        "pin": 16,
+        "capture": "rising",
+        "timestamp": 755400401,
+        "relative_timestamp": 5.00416
+    },
+    {
+        "pin": 21,
+        "capture": "falling",
+        "timestamp": 755400406,
+        "relative_timestamp": 5.004165
+    },
+    {
+        "pin": 16,
+        "capture": "falling",
+        "timestamp": 756401796,
+        "relative_timestamp": 6.005555
+    },
+    {
+        "pin": 16,
+        "capture": "rising",
+        "timestamp": 757403081,
+        "relative_timestamp": 7.00684
+    },
+    {
+        "pin": 20,
+        "capture": "rising",
+        "timestamp": 757403081,
+        "relative_timestamp": 7.00684
+    },
+    {
+        "pin": 16,
+        "capture": "falling",
+        "timestamp": 757903886,
+        "relative_timestamp": 7.507645
+    },
+    {
+        "pin": 16,
+        "capture": "rising",
+        "timestamp": 758404686,
+        "relative_timestamp": 8.008445
+    },
+    {
+        "pin": 20,
+        "capture": "falling",
+        "timestamp": 758404686,
+        "relative_timestamp": 8.008445
+    },
+    {
+        "pin": 21,
+        "capture": "rising",
+        "timestamp": 758404686,
+        "relative_timestamp": 8.008445
+    },
+    {
+        "pin": 16,
+        "capture": "falling",
+        "timestamp": 758805316,
+        "relative_timestamp": 8.409075
+    },
+    {
+        "pin": 16,
+        "capture": "rising",
+        "timestamp": 759406191,
+        "relative_timestamp": 9.00995
+    },
+    {
+        "pin": 21,
+        "capture": "falling",
+        "timestamp": 759406196,
+        "relative_timestamp": 9.009955
+    },
+    {
+        "pin": 16,
+        "capture": "falling",
+        "timestamp": 760107031,
+        "relative_timestamp": 9.71079
+    }
+]

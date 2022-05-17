@@ -1,0 +1,86 @@
+[
+    {
+        "dumb": "10,11,12",
+        "type": "any data",
+        "at": -1
+    },
+    {
+        "type": "accept_error",
+        "value": 0.3,
+        "at": -1
+    },
+    {
+        "pin": 10,
+        "capture": "rising",
+        "at": 0,
+        "type": "input"
+    },
+    {
+        "pin": 10,
+        "capture": "falling",
+        "at": 1,
+        "type": "input"
+    },
+    {
+        "pin": 9,
+        "capture": "rising",
+        "at": 0.2,
+        "unit": "s",
+        "type": "output",
+        "accept_error": 0.3
+    },
+    {
+        "pin": 10,
+        "capture": "rising",
+        "at": 4,
+        "unit": "s",
+        "type": "input"
+    },
+    {
+        "pin": 10,
+        "capture": "falling",
+        "at": 5,
+        "type": "input"
+    },
+    {
+        "pin": 9,
+        "capture": "falling",
+        "at": 4,
+        "unit": "s",
+        "type": "output",
+        "accept_error": 0.3
+    },
+    {
+        "pin": 11,
+        "capture": "rising",
+        "at": 4.2,
+        "unit": "s",
+        "type": "output",
+        "accept_error": 0.3
+    },
+    {
+        "pin": 10,
+        "capture": "rising",
+        "at": 7,
+        "unit": "s",
+        "type": "input"
+    },
+    {
+        "pin": 10,
+        "capture": "falling",
+        "at": 7.2,
+        "type": "input"
+    },
+    {
+        "pin": 11,
+        "capture": "falling",
+        "at": 7,
+        "unit": "s",
+        "type": "output",
+        "accept_error": 0.3
+    },
+    {
+        "type": "end",
+        "at": 9
+    }
+]

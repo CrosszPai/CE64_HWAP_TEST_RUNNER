@@ -1,0 +1,14 @@
+---
+title: test1
+cases:
+- describe: case1
+  input:
+    pin: 26
+    input_type: repeat
+    timming: 100
+    loops: 10
+  output:
+    pin: 16
+    check: follow_input
+    value: High
+    error: 0.01
